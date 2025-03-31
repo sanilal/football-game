@@ -1,0 +1,14 @@
+[14-Sep-2023 08:10:31 America/Chicago] PHP Warning:  Undefined array key "invoice" in /home1/s8hgjm0i/public_html/demo/inc/ajax-invoice-check.php on line 8
+[14-Sep-2023 08:10:31 America/Chicago] PHP Warning:  Undefined variable $query in /home1/s8hgjm0i/public_html/demo/inc/ajax-invoice-check.php on line 23
+[14-Sep-2023 08:10:31 America/Chicago] PHP Fatal error:  Uncaught ValueError: mysqli_query(): Argument #2 ($query) cannot be empty in /home1/s8hgjm0i/public_html/demo/inc/ajax-invoice-check.php:23
+Stack trace:
+#0 /home1/s8hgjm0i/public_html/demo/inc/ajax-invoice-check.php(23): mysqli_query(Object(mysqli), '')
+#1 {main}
+  thrown in /home1/s8hgjm0i/public_html/demo/inc/ajax-invoice-check.php on line 23
+[14-Sep-2023 08:10:34 America/Chicago] PHP Warning:  Undefined array key "invoice" in /home1/s8hgjm0i/public_html/demo/inc/ajax-invoice-check.php on line 8
+[14-Sep-2023 08:10:34 America/Chicago] PHP Warning:  Undefined variable $query in /home1/s8hgjm0i/public_html/demo/inc/ajax-invoice-check.php on line 23
+[14-Sep-2023 08:10:34 America/Chicago] PHP Fatal error:  Uncaught ValueError: mysqli_query(): Argument #2 ($query) cannot be empty in /home1/s8hgjm0i/public_html/demo/inc/ajax-invoice-check.php:23
+Stack trace:
+#0 /home1/s8hgjm0i/public_html/demo/inc/ajax-invoice-check.php(23): mysqli_query(Object(mysqli), '')
+#1 {main}
+  thrown in /home1/s8hgjm0i/public_html/demo/inc/ajax-invoice-check.php on line 23
