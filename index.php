@@ -26,7 +26,7 @@ $currentDateTime = date("Y-m-d H:i");
                 <div class="score5">
                     <img src="assets/images/score-5-goals.svg" alt="Score 5 goals before time runs out" class="img-fluid">
                 </div>
-                <a href="#" class="start-here btn"><img src="assets/images/start-here.svg" alt="Start Here"></a>
+                <a href="ready.php" class="start-here btn"><img src="assets/images/start-here.svg" alt="Start Here"></a>
                 <div class="alnassr">
                     <img src="assets/images/alnassar-football-club.svg" alt="Al Nassr Football Club" class="img-fluid">
                 </div>

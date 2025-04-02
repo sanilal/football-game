@@ -1,3 +1,13 @@
+<?php 
+// define randomChance here and use it in the script below
+ $randomChance = rand(1, 5);
+ echo $randomChance; // This will output a random number between 1 and 5
+ die;
+
+?>
+
+<script>
+
 const viewportWidth = window.innerWidth;
 const viewportHeight = window.innerHeight;
 const football = document.getElementById("football");
@@ -7,7 +17,7 @@ const timerElement = document.getElementById("timer");
 
 let goals = 0;
 let gameEnded = false;
-let gameTime = 20;
+let gameTime = 120;
 let ballMoving = false;
 
 const initialBallPosition = {
@@ -68,7 +78,7 @@ function kickBall() {
 
 
 
-    const randomChance = Math.floor(Math.random() * 5) + 1;
+    const randomChance = <?php echo $randomChance; ?>; // Random number between 1 and 5
 console.log("Random Number:", randomChance);
 
 let targetX, targetY;
@@ -119,35 +129,11 @@ function resetBall() {
     ballMoving = false;
 }
 
-// function endGame() {
-//     gameEnded = true;
-//     football.removeEventListener("click", kickBall);
-//     alert(`Game Over! You scored ${goals} goals!`);
-// }
-
-
-// function endGame() {
-//     gameEnded = true;
-//     football.removeEventListener("click", kickBall);
-
-//     // Store the score in the session storage (optional)
-//     sessionStorage.setItem('goals', goals);  // Store the score in session storage
-    
-//     // Redirect to the form.php page
-//     window.location.href = "form.php";
-//      alert(`Game Over! You scored ${goals} goals!`);
-// }
-
 function endGame() {
     gameEnded = true;
     football.removeEventListener("click", kickBall);
-    
-    // Send score to save_score.php via AJAX
-    $.post("save_score.php", { goals: goals }, function(response) {
-        console.log("Score saved:", response);
-        window.location.href = "form.php";
-    }).fail(function() {
-        alert("Error saving score.");
-    });
+    alert(`Game Over! You scored ${goals} goals!`);
 }
 
+
+</script>

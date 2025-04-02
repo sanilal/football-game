@@ -45,6 +45,35 @@
     url("../fonts/ge-ss-two-medium/125063e353c1f65c55ba1e3811969217.svg#GE SS Two Medium")format("svg");
 }
 
+@font-face {
+    font-family: "DIN Next LT Arabic Light";
+    src: url("../fonts/d78f5d2c76185fa07aaf8dd729eef33e.eot");
+    src: url("../fonts/d78f5d2c76185fa07aaf8dd729eef33e.eot?#iefix")format("embedded-opentype"),
+    url("../fonts/d78f5d2c76185fa07aaf8dd729eef33e.woff2")format("woff2"),
+    url("../fonts/d78f5d2c76185fa07aaf8dd729eef33e.woff")format("woff"),
+    url("../fonts/d78f5d2c76185fa07aaf8dd729eef33e.ttf")format("truetype"),
+    url("../fonts/d78f5d2c76185fa07aaf8dd729eef33e.svg#DIN Next LT Arabic Light")format("svg");
+}
+@font-face {
+    font-family: "DIN Next LT Arabic Medium";
+    src: url("../fonts/aba1a083bf50980a05f0265179103a09.eot");
+    src: url("../fonts/aba1a083bf50980a05f0265179103a09.eot?#iefix")format("embedded-opentype"),
+    url("../fonts/aba1a083bf50980a05f0265179103a09.woff2")format("woff2"),
+    url("../fonts/aba1a083bf50980a05f0265179103a09.woff")format("woff"),
+    url("../fonts/aba1a083bf50980a05f0265179103a09.ttf")format("truetype"),
+    url("../fonts/aba1a083bf50980a05f0265179103a09.svg#DIN Next LT Arabic Medium")format("svg");
+}
+
+@font-face {
+    font-family: "Tungsten-Bold";
+    src: url("https://db.onlinewebfonts.com/t/561f38b1f4570de0fb8a39d691ab058c.eot");
+    src: url("https://db.onlinewebfonts.com/t/561f38b1f4570de0fb8a39d691ab058c.eot?#iefix")format("embedded-opentype"),
+    url("https://db.onlinewebfonts.com/t/561f38b1f4570de0fb8a39d691ab058c.woff2")format("woff2"),
+    url("https://db.onlinewebfonts.com/t/561f38b1f4570de0fb8a39d691ab058c.woff")format("woff"),
+    url("https://db.onlinewebfonts.com/t/561f38b1f4570de0fb8a39d691ab058c.ttf")format("truetype"),
+    url("https://db.onlinewebfonts.com/t/561f38b1f4570de0fb8a39d691ab058c.svg#Tungsten-Bold")format("svg");
+}
+
 /* <weight>: Use a value from 300 to 800 */
 
 /* .bebas {
@@ -63,7 +92,7 @@
 
 
 body {
-    font-family: "Poppins", serif;
+    font-family: "Tungsten-Bold";
     font-weight: 500;
     font-style: normal;
     letter-spacing: .06em;
@@ -78,7 +107,7 @@ body {
     display: table;
   }
 .arabic {
-    font-family: "GE SS Two Medium";
+    font-family: "DIN Next LT Arabic Light";
 }
 .opacity-0 {
     opacity: 0;
@@ -241,6 +270,24 @@ a.start-here {
     flex-direction: column;
     /* justify-content: center; */
 }
+.form-container{
+    background: #3c1400;
+    width: 100%;
+}
+.form-header {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.formpage .header {
+    width: 100%;
+    background:none;
+    padding: 10px 15px;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+}
+
 /* .homepage .header img {
     width: 250px;
     max-width: 80%;
@@ -411,6 +458,7 @@ img#football {
     margin: auto auto 25px auto;
     position: absolute;
     bottom: 25px;
+    cursor: pointer;
 }
 /* #timer {
     padding-left:10px
@@ -514,12 +562,23 @@ img#football {
 
 
 .main {
-    width: 100%;
+    width: 450px;
+    max-width: 100%;
     display: flex;
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
     min-height: 100vh;    
+}
+#hero {
+    width: 450px;
+    max-width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;    
+    margin: 0 auto;
 }
 .actions {
     width: 100%;
@@ -749,7 +808,7 @@ p#disclaimer strong {
     margin-bottom: 15px;
     border-radius: 5px;
     color: #000;
-    font-size: 1rem;
+    font-size: 1.5rem;
 }
 input#inputInvoice {
     height: 44px;
@@ -907,7 +966,44 @@ p.errormsg {
     border-radius: 9px;
 }
 /* Form */
+#submit-form {
+    display: flex;
+    flex-direction: column;
+    border-radius: 18px;
+    position: relative;
+    padding: 2rem 0;
+    margin-top: .75rem;
+}
 
+.win-cash h1 {
+    color: #fff;
+    text-align: center;
+    margin-bottom: 0;
+    font-family: "DIN Next LT Arabic Medium";
+    font-size: 2.8rem;
+    font-weight: 400;
+    line-height: 3.5rem;
+}
+#submit-form .english , .win-cash h1.english {
+    margin-bottom: 1rem;
+    font-family: "Tungsten-Bold";
+}
+#submit-form label {
+    color: #fff;
+    font-size: 1.75rem;
+}
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5rem;
+}
+.form-group label {
+    color: var(--dark-blue);
+    margin-bottom: .35rem;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 5px;
+}
 .succMsg {
     background: #00934a;
     color: #fff;
@@ -1169,6 +1265,13 @@ transition: transform .2s;
     border-radius: 8px;
     font-weight: 700;
     margin-left: 10%;
+}
+button#submit-button {
+    width: 220px;
+    max-width: 75%;
+    background: transparent;
+    border: none;
+    outline: none;
 }
 .actionBtn{
     cursor: pointer;

@@ -30,10 +30,10 @@ $currentDateTime = date("Y-m-d H:i");
                     
                     <div class="goals">
                         <div class="goals-col">
-                            <span class="hunfan"> HUNGER</span><span class="scorepoint">10</span>
+                            <span class="hunfan"> HUNGER</span><span class="scorepoint">00</span>
                         </div>
                         <div class="goals-col">
-                            <span class="hunfan"> FAN</span><span id="goal-count" class="scorepoint">00</span>
+                            <span class="hunfan"> FAN</span><span id="goal-count" class="scorepoint">05</span>
                         </div>
                         
                     </div>
