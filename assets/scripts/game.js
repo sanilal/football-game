@@ -25,13 +25,20 @@ function startTimer() {
             clearInterval(timer);
             return;
         }
+
         gameTime--;
         timerElement.textContent = gameTime;
+
         if (gameTime <= 0) {
+            clearInterval(timer); // Stop the timer
+            console.log("Timer ended, calling endGame()");
             endGame();
+        } else {
+
         }
     }, 1000);
 }
+
 
 function kickBall() {
     if (ballMoving || gameEnded) return;
@@ -42,31 +49,6 @@ function kickBall() {
     
     const startY = football.offsetTop;
     const goalpostRect = goalpost.getBoundingClientRect();
-
-    // console.log("Goalpost Rect Left:", goalpostRect.left);
-    // console.log("Goalpost Rect Right:", goalpostRect.right);
-    // console.log("Goalpost Width:", goalpostRect.width);
-    // console.log("Viewport Width:", window.innerWidth);
-    
-    // const expectedRight = goalpostRect.left + goalpostRect.width;
-    // console.log("Expected Right:", expectedRight);
-    //  console.log("Goalpost Rect Width:", goalpostRect.width);
-    //  console.log("Goalpost Rect Height:", goalpostRect.height);
-    //  console.log("Goalpost Rect Top:", goalpostRect.top);
-    //  console.log("Goalpost Rect Bottom:", goalpostRect.bottom);
-    //  console.log("Goalpost Rect Left:", goalpostRect.left);
-    //  console.log("Goalpost Rect Right:", goalpostRect.right);
-    //  console.log("Viewport Width:", viewportWidth);
-
-    //      const width = goalpost.offsetWidth;
-    //     console.log("goalpost Width:", width);
-
-    //     const leftMargin = window.getComputedStyle(goalpost).marginLeft;
-    // console.log("goalpost Left Margin:", leftMargin);
-    // const rightMargin = window.getComputedStyle(goalpost).marginRight;
-    // console.log("goalpost Right Margin:", rightMargin);
-
-
 
     const randomChance = Math.floor(Math.random() * 5) + 1;
 console.log("Random Number:", randomChance);
@@ -119,35 +101,30 @@ function resetBall() {
     ballMoving = false;
 }
 
-// function endGame() {
-//     gameEnded = true;
-//     football.removeEventListener("click", kickBall);
-//     alert(`Game Over! You scored ${goals} goals!`);
-// }
-
-
-// function endGame() {
-//     gameEnded = true;
-//     football.removeEventListener("click", kickBall);
-
-//     // Store the score in the session storage (optional)
-//     sessionStorage.setItem('goals', goals);  // Store the score in session storage
-    
-//     // Redirect to the form.php page
-//     window.location.href = "form.php";
-//      alert(`Game Over! You scored ${goals} goals!`);
-// }
 
 function endGame() {
     gameEnded = true;
     football.removeEventListener("click", kickBall);
-    
-    // Send score to save_score.php via AJAX
-    $.post("save_score.php", { goals: goals }, function(response) {
+
+    let finalGoals = goals || 0;
+console.log("Final Goals:", finalGoals);
+
+    $.post("save_score.php", { goals: finalGoals }, function(response) {
         console.log("Score saved:", response);
-        window.location.href = "form.php";
+        console.log("Redirecting to form.php...");
+      //  window.location.replace("form.php");
+        setTimeout(() => {
+            window.location.replace("form.php");
+        }, 500); // Short delay ensures AJAX completes before redirect
     }).fail(function() {
         alert("Error saving score.");
+        setTimeout(() => {
+            window.location.replace("form.php");
+        }, 500);
     });
 }
+
+
+
+
 

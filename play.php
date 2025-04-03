@@ -45,6 +45,9 @@ $currentDateTime = date("Y-m-d H:i");
                 <div id="goalpost"><img src="assets/images/goal-post.png" alt="Goal Post" class="img-fluid"></div>
                 <img id="football" src="assets/images/football.png" alt="Football" class="img-fluid">
                 <div id="message-overlay" class="hidden"></div>
+                <div class="red-shape">
+                    <img src="assets/images/red-triangle-left.svg" alt="Red Shape" class="img-fluid">
+                </div>
             </div>
             </div>
            

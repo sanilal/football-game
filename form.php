@@ -23,20 +23,28 @@ function customDecrypt($encryptedData) {
     return openssl_decrypt(base64_decode($encryptedData), 'AES-256-CBC', $key, 0, $iv);
 }
 
-if (!isset($_SESSION['goals']) || $_SESSION['goals'] < 1) {
-    if (isset($_POST['goal']) && !empty($_POST['goal'])) {
-        $decryptedGoal = customDecrypt($_POST['goal']); // Decrypt goal from POST
-        if ($decryptedGoal !== false && is_numeric($decryptedGoal)) {
-            $_SESSION['goals'] = (int) $decryptedGoal; // Store back to session
-        }
-    } else {
-        // Redirect to play.php if no valid goal is found
-        header("Location: play.php");
-        exit();
-    }
+ //var_dump($_SESSION['goals']); die;
+
+//  Temp lines delete after testing
+ if (isset($_POST['goal']) && !empty($_POST['goal'])) {
+     $decryptedGoal = customDecrypt($_POST['goal']); // Decrypt goal from POST    
+ //    var_dump($decryptedGoal); die;
+} else {
+    $decryptedGoal = 0;
+ //   var_dump($decryptedGoal); die;
 }
 
 
+// Temp lines delete after testing
+
+if (!isset($_SESSION['goals']) || $_SESSION['goals'] < 1) {
+  //  echo 145; die;
+  $decryptedGoal = 0;
+  
+} 
+
+
+//var_dump($decryptedGoal); die;
 
 $encryptedGoal = customEncrypt($_SESSION['goals']);
 
@@ -85,6 +93,17 @@ if ($prevspiId) {
 
 if(isset($_REQUEST['btnadd'])) {
 
+
+    if (isset($_POST['goal']) && !empty($_POST['goal'])) {
+        $decryptedGoal = customDecrypt($_POST['goal']); // Decrypt goal from POST
+        if ($decryptedGoal !== false && is_numeric($decryptedGoal)) {
+            $_SESSION['goals'] = (int) $decryptedGoal; // Store back to session
+        }
+    } else {
+        // Redirect to play.php if no valid goal is found
+        header("Location: play.php");
+        exit();
+    }
     $ctime = time();
     function generateUniqueID($time)
         {

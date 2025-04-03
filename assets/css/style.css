@@ -460,6 +460,12 @@ img#football {
     bottom: 25px;
     cursor: pointer;
 }
+.red-shape {
+    position: absolute;
+    width: 20px;
+    bottom: 40px;
+    right: 30px;
+}
 /* #timer {
     padding-left:10px
 } */

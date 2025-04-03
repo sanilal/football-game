@@ -1,33 +1,46 @@
 
 
 //  Doc ready starts
+document.addEventListener("DOMContentLoaded", function () {
+    function isMobileDevice() {
+        return /Mobi|Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent);
+    }
+
+    if (!isMobileDevice()) {
+        // Redirect to a different page if it's not a smartphone/tablet
+        window.location.href = "desktop_warning.html"; 
+    }
+});
 $(document).ready(function(){
 
-   
+    
+
     // const radio = $('.radio-btn')
     // $(radio).click(function(){
     //     $('.form-check-input').addClass('checked')
     // })
     const formHeader = document.querySelector('.form-header')
-    const formContainer = document.querySelector('.form-container')
-    const formHeaderHeight = formHeader.offsetHeight
+    if(formHeader) {
+        const formContainer = document.querySelector('.form-container')
+        const formHeaderHeight = formHeader.offsetHeight
+        formContainer.style.marginTop = `${formHeaderHeight}px`
+    }
     // console.log(formHeaderHeight);
-    formContainer.style.marginTop = `${formHeaderHeight}px`
     // console.log(formContainer.style.marginTop);
     
     
-    const termsButton = document.querySelectorAll('.termsClick')
-    const popupClose = document.querySelector('.popupClose')
-    const popupOuter = document.querySelector('.popupOuter')
-    termsButton.forEach((terms)=>{
-        terms.addEventListener('click',()=>{
-            popupOuter.classList.add('show')
-        })
-    })
+    // const termsButton = document.querySelectorAll('.termsClick')
+    // const popupClose = document.querySelector('.popupClose')
+    // const popupOuter = document.querySelector('.popupOuter')
+    // termsButton.forEach((terms)=>{
+    //     terms.addEventListener('click',()=>{
+    //         popupOuter.classList.add('show')
+    //     })
+    // })
     
-    popupClose.addEventListener('click', function(){
-        popupOuter.classList.remove('show')
-    })
+    // popupClose.addEventListener('click', function(){
+    //     popupOuter.classList.remove('show')
+    // })
 
     const msgclose = document.querySelector('.msgclose')
 //console.log(12);

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile-Only Access</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+        }
+        .message {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        .warning-icon {
+            font-size: 50px;
+            color: #ff5722;
+        }
+    </style>
+</head>
+<body>
+    <div class="message">
+        <div class="warning-icon">⚠️</div>
+        <h2>Access Restricted</h2>
+        <p>This game is only available on smartphones and tablets.</p>
+        <p>Please visit this page on a mobile device to continue.</p>
+    </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    function isMobileDevice() {
+        return /Mobi|Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent);
+    }
+
+    if (isMobileDevice()) {
+        // Redirect to a different page if it's not a smartphone/tablet
+        window.location.href = "index.php"; 
+    }
+});
+</script>
+</body>
+</html>
