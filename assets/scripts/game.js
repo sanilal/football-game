@@ -18,7 +18,7 @@ const timerElement = document.getElementById("timer");
 
 let goals = 0;
 let gameEnded = false;
-let gameTime = 20;
+let gameTime = 200;
 let ballMoving = false;
 
 
@@ -64,11 +64,11 @@ function kickBall() {
     const randomChance = Math.floor(Math.random() * 5) + 1;
 
     let targetX, targetY;
-
+console.log(randomChance)
     if (randomChance === 3 || randomChance === 4) {
-        // Ball enters goal (stays inside the post)
-        targetX = goalpostRect.left + goalpostRect.width / 2 - ballRect.width / 2; // Center ball inside goalpost
-        targetY = goalpostRect.top + goalpostRect.height - ballRect.height; // Prevent ball from going beyond goal
+        // Ball enters goal (inside post)
+        targetX = goalpostRect.left + (goalpostRect.width / 2) - (ballRect.width / 2);
+        targetY = goalpostRect.top + (goalpostRect.height / 2) - (ballRect.height / 2);
     } else if (randomChance === 1 || randomChance === 2) {
         // Ball misses to the LEFT
         targetX = goalpostRect.left - 50; 
@@ -79,11 +79,22 @@ function kickBall() {
         targetY = goalpostRect.top + Math.random() * 50;
     }
 
+    // Move the ball
     football.style.transition = "transform 2s, left 2s, bottom 2s";
     football.style.transform = `translate(${targetX - startX}px, ${targetY - startY}px)`;
     football.style.left = `${targetX}px`;
     football.style.bottom = `${targetY}px`;
+
+    // Prevent ball from passing beyond the goal
+    setTimeout(() => {
+        if (randomChance === 3 || randomChance === 4) {
+            football.style.transition = "none"; // Stop movement
+            football.style.left = `${targetX}px`; 
+            football.style.top = `${targetY}px`;
+        }
+    }, 2000); // Ensures ball doesn't move beyond goal after transition
 }
+
 
 
 football.addEventListener("transitionend", () => {
