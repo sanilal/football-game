@@ -273,6 +273,7 @@ a.start-here {
 .form-container{
     background: #3c1400;
     width: 100%;
+    margin-top: 240px;
 }
 .form-header {
     position: absolute;
@@ -813,8 +814,8 @@ p#disclaimer strong {
     padding: 12px 10px;
     margin-bottom: 15px;
     border-radius: 5px;
-    color: #000;
-    font-size: 1.5rem;
+    color: #faad19;
+    font-size: 1.25rem;
 }
 input#inputInvoice {
     height: 44px;
@@ -825,7 +826,7 @@ input#inputInvoice {
 }
 
 .shop-form input::placeholder, #getCoupon input::placeholder {
-    color: #000;
+    color: #faad19;
 }
 #getCoupon input[type="text"] {
     width: 100%;
@@ -1540,6 +1541,13 @@ span.arabic.text-medium.text-center.text-white.langselecter {
         width: 150px;
     }
 }
+@media only screen 
+  and (min-device-width: 414px) 
+  and (max-device-width: 736px) 
+  and (-webkit-min-device-pixel-ratio: 3) { 
+    div#goalpost {
+        margin: -1vh auto 0 auto;
+}
 @media only screen and (max-width: 380px) { 
     html {
         font-size: 9px !important;
@@ -1550,9 +1558,9 @@ span.arabic.text-medium.text-center.text-white.langselecter {
     .fontsize15 {
         font-size: 1.8vh !important;
     }
-    .win-cash {
+    /* .win-cash {
         margin: max(25vh, 245px) 0 1rem 1rem;
-    }
+    } */
     .retailers {
         width: 200px;
     }

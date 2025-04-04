@@ -1,3 +1,14 @@
+document.addEventListener("DOMContentLoaded", function () {
+    function isMobileDevice() {
+        return /Mobi|Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent);
+    }
+
+    if (!isMobileDevice()) {
+        // Redirect to a different page if it's not a smartphone/tablet
+        window.location.href = "desktop_warning.html"; 
+    }
+});
+
 const viewportWidth = window.innerWidth;
 const viewportHeight = window.innerHeight;
 const football = document.getElementById("football");
@@ -9,6 +20,7 @@ let goals = 0;
 let gameEnded = false;
 let gameTime = 20;
 let ballMoving = false;
+
 
 const initialBallPosition = {
     left: "50%",
@@ -31,7 +43,7 @@ function startTimer() {
 
         if (gameTime <= 0) {
             clearInterval(timer); // Stop the timer
-            console.log("Timer ended, calling endGame()");
+           //  console.log("Timer ended, calling endGame()");
             endGame();
         } else {
 
@@ -51,7 +63,7 @@ function kickBall() {
     const goalpostRect = goalpost.getBoundingClientRect();
 
     const randomChance = Math.floor(Math.random() * 5) + 1;
-console.log("Random Number:", randomChance);
+    // console.log("Random Number:", randomChance);
 
 let targetX, targetY;
 
@@ -84,10 +96,12 @@ football.addEventListener("transitionend", () => {
     const ballInGoal = ballRect.left >= goalpostRect.left && ballRect.right <= goalpostRect.right;
 
     if (ballInGoal) {
-        console.log("Initial Goal!", goals);
+        // console.log("Initial Goal!", goals);
         goals++;
-        console.log("New Goal!", goals);
-        goalCount.textContent = goals;
+        // console.log("New Goal!", goals);
+        // goalCount.textContent = goals;
+        goalCount.textContent = String(goals).padStart(2, '0'); // Ensures 01, 02, 03
+
     }
 
     resetBall();
@@ -107,11 +121,11 @@ function endGame() {
     football.removeEventListener("click", kickBall);
 
     let finalGoals = goals || 0;
-console.log("Final Goals:", finalGoals);
+    // console.log("Final Goals:", finalGoals);
 
     $.post("save_score.php", { goals: finalGoals }, function(response) {
-        console.log("Score saved:", response);
-        console.log("Redirecting to form.php...");
+        // console.log("Score saved:", response);
+        // console.log("Redirecting to form.php...");
       //  window.location.replace("form.php");
         setTimeout(() => {
             window.location.replace("form.php");

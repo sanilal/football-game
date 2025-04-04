@@ -19,12 +19,13 @@ $(document).ready(function(){
     // $(radio).click(function(){
     //     $('.form-check-input').addClass('checked')
     // })
-    const formHeader = document.querySelector('.form-header')
-    if(formHeader) {
-        const formContainer = document.querySelector('.form-container')
-        const formHeaderHeight = formHeader.offsetHeight
-        formContainer.style.marginTop = `${formHeaderHeight}px`
-    }
+    // const formHeader = document.querySelector('.form-header')
+    // if(formHeader) {
+    //     const formContainer = document.querySelector('.form-container')
+    //     const formHeaderHeight = formHeader.offsetHeight
+    //     formHeaderHeight < 130 ? formHeaderHeight = 240 : formHeaderHeight = formHeaderHeight
+    //     formContainer.style.marginTop = `${formHeaderHeight}px`
+    // }
     // console.log(formHeaderHeight);
     // console.log(formContainer.style.marginTop);
     

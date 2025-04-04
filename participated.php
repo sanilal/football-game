@@ -12,7 +12,7 @@ echo "<!DOCTYPE html>
 </head>
 <body class=\"home\" style=\"background-color: #ececec;\">
     
-    <div id=\"hero\"><img src=\"assets/images/thankyou.png\" alt=\"Ready... Set... GO!\" class=\"img-fluid\" /></div>   
+    <div id=\"hero\"><img src=\"assets/images/already-participated.png\" alt=\"Already Participated. Thank You!\" class=\"img-fluid\" /></div>   
 
     <script src=\"https://code.jquery.com/jquery-3.6.0.min.js\"></script>
     <!-- <script src=\"assets/js/app.js\"></script> -->
