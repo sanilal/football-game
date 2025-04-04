@@ -57,36 +57,34 @@ function kickBall() {
     ballMoving = true;
 
     const startX = football.offsetLeft;
-   // console.log("Start X:", startX);
-    
     const startY = football.offsetTop;
     const goalpostRect = goalpost.getBoundingClientRect();
+    const ballRect = football.getBoundingClientRect();
 
     const randomChance = Math.floor(Math.random() * 5) + 1;
-    // console.log("Random Number:", randomChance);
 
-let targetX, targetY;
+    let targetX, targetY;
 
-if (randomChance === 3 || randomChance === 4) {
-    //  Ball enters goal (inside post)
-    targetX = goalpostRect.left + goalpostRect.width / 2; // Center of goalpost
-    targetY = goalpostRect.top + 20;
-} else if (randomChance === 1 || randomChance === 2) {
-    //  Ball misses to the LEFT (away from the post)
-    targetX = goalpostRect.left - 50; // Move ball further left
-    targetY = goalpostRect.top + Math.random() * 50; // Random height
-} else if (randomChance === 5) {
-    //  Ball misses to the RIGHT (away from the post)
-    targetX = goalpostRect.right + 50; // Move ball further right
-    targetY = goalpostRect.top + Math.random() * 50; // Random height
+    if (randomChance === 3 || randomChance === 4) {
+        // Ball enters goal (stays inside the post)
+        targetX = goalpostRect.left + goalpostRect.width / 2 - ballRect.width / 2; // Center ball inside goalpost
+        targetY = goalpostRect.top + goalpostRect.height - ballRect.height; // Prevent ball from going beyond goal
+    } else if (randomChance === 1 || randomChance === 2) {
+        // Ball misses to the LEFT
+        targetX = goalpostRect.left - 50; 
+        targetY = goalpostRect.top + Math.random() * 50;
+    } else if (randomChance === 5) {
+        // Ball misses to the RIGHT
+        targetX = goalpostRect.right + 50; 
+        targetY = goalpostRect.top + Math.random() * 50;
+    }
+
+    football.style.transition = "transform 2s, left 2s, bottom 2s";
+    football.style.transform = `translate(${targetX - startX}px, ${targetY - startY}px)`;
+    football.style.left = `${targetX}px`;
+    football.style.bottom = `${targetY}px`;
 }
 
-football.style.transition = "transform 2s, left 2s, bottom 2s";
-football.style.transform = `translate(${targetX - startX}px, ${targetY - startY}px)`;
-football.style.left = `${targetX}px`;
-football.style.bottom = `${targetY}px`;
-
-}
 
 football.addEventListener("transitionend", () => {
     if (!ballMoving) return;
