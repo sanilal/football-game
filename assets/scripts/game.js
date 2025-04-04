@@ -18,7 +18,7 @@ const timerElement = document.getElementById("timer");
 
 let goals = 0;
 let gameEnded = false;
-let gameTime = 200;
+let gameTime = 20;
 let ballMoving = false;
 
 
@@ -57,45 +57,36 @@ function kickBall() {
     ballMoving = true;
 
     const startX = football.offsetLeft;
+   // console.log("Start X:", startX);
+    
     const startY = football.offsetTop;
     const goalpostRect = goalpost.getBoundingClientRect();
-    const ballRect = football.getBoundingClientRect();
 
     const randomChance = Math.floor(Math.random() * 5) + 1;
+     console.log("Random Number:", randomChance);
 
-    let targetX, targetY;
-console.log(randomChance)
-    if (randomChance === 3 || randomChance === 4) {
-        // Ball enters goal (inside post)
-        targetX = goalpostRect.left + (goalpostRect.width / 2) - (ballRect.width / 2);
-        targetY = goalpostRect.top + (goalpostRect.height / 2) - (ballRect.height / 2);
-    } else if (randomChance === 1 || randomChance === 2) {
-        // Ball misses to the LEFT
-        targetX = goalpostRect.left - 50; 
-        targetY = goalpostRect.top + Math.random() * 50;
-    } else if (randomChance === 5) {
-        // Ball misses to the RIGHT
-        targetX = goalpostRect.right + 50; 
-        targetY = goalpostRect.top + Math.random() * 50;
-    }
+let targetX, targetY;
 
-    // Move the ball
-    football.style.transition = "transform 2s, left 2s, bottom 2s";
-    football.style.transform = `translate(${targetX - startX}px, ${targetY - startY}px)`;
-    football.style.left = `${targetX}px`;
-    football.style.bottom = `${targetY}px`;
-
-    // Prevent ball from passing beyond the goal
-    setTimeout(() => {
-        if (randomChance === 3 || randomChance === 4) {
-            football.style.transition = "none"; // Stop movement
-            football.style.left = `${targetX}px`; 
-            football.style.top = `${targetY}px`;
-        }
-    }, 2000); // Ensures ball doesn't move beyond goal after transition
+if (randomChance === 2 || randomChance === 3 || randomChance === 4) {
+    //  Ball enters goal (inside post)
+    targetX = goalpostRect.left + goalpostRect.width / 2; // Center of goalpost
+    targetY = goalpostRect.top + 20;
+} else if (randomChance === 1) {
+    //  Ball misses to the LEFT (away from the post)
+    targetX = goalpostRect.left - 50; // Move ball further left
+    targetY = goalpostRect.top + Math.random() * 50; // Random height
+} else if (randomChance === 5) {
+    //  Ball misses to the RIGHT (away from the post)
+    targetX = goalpostRect.right + 50; // Move ball further right
+    targetY = goalpostRect.top + Math.random() * 50; // Random height
 }
 
+football.style.transition = "transform 2s, left 2s, bottom 2s";
+football.style.transform = `translate(${targetX - startX}px, ${targetY - startY}px)`;
+football.style.left = `${targetX}px`;
+football.style.bottom = `${targetY}px`;
 
+}
 
 football.addEventListener("transitionend", () => {
     if (!ballMoving) return;
@@ -105,10 +96,10 @@ football.addEventListener("transitionend", () => {
     const ballInGoal = ballRect.left >= goalpostRect.left && ballRect.right <= goalpostRect.right;
 
     if (ballInGoal) {
-        // console.log("Initial Goal!", goals);
+         console.log("Initial Goal!", goals);
         goals++;
-        // console.log("New Goal!", goals);
-        // goalCount.textContent = goals;
+         console.log("New Goal!", goals);
+         goalCount.textContent = goals;
         goalCount.textContent = String(goals).padStart(2, '0'); // Ensures 01, 02, 03
 
     }
@@ -130,19 +121,29 @@ function endGame() {
     football.removeEventListener("click", kickBall);
 
     let finalGoals = goals || 0;
-    // console.log("Final Goals:", finalGoals);
 
     $.post("save_score.php", { goals: finalGoals }, function(response) {
-        // console.log("Score saved:", response);
-        // console.log("Redirecting to form.php...");
-      //  window.location.replace("form.php");
+        console.log("Score saved:", response);
+        
+        // Redirect based on the number of goals
         setTimeout(() => {
-            window.location.replace("form.php");
+            if (finalGoals < 5) {
+                window.location.replace("index.php"); // Redirect to index.php if goals < 5
+            } else {
+                window.location.replace("form.php"); // Redirect to form.php if goals >= 5
+            }
         }, 500); // Short delay ensures AJAX completes before redirect
+
     }).fail(function() {
         alert("Error saving score.");
+        
+        // Even on failure, apply the same redirection logic
         setTimeout(() => {
-            window.location.replace("form.php");
+            if (finalGoals < 5) {
+                window.location.replace("index.php");
+            } else {
+                window.location.replace("form.php");
+            }
         }, 500);
     });
 }
