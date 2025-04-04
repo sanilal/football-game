@@ -81,7 +81,7 @@ if (randomChance === 2 || randomChance === 3 || randomChance === 4) {
     targetY = goalpostRect.top + Math.random() * 50; // Random height
 }
 
-football.style.transition = "transform 2s, left 2s, bottom 2s";
+football.style.transition = "transform 1s, left 1s, bottom 1s";
 football.style.transform = `translate(${targetX - startX}px, ${targetY - startY}px)`;
 football.style.left = `${targetX}px`;
 football.style.bottom = `${targetY}px`;
