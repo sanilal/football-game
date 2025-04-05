@@ -1541,12 +1541,10 @@ span.arabic.text-medium.text-center.text-white.langselecter {
         width: 150px;
     }
 }
-@media only screen 
-  and (min-device-width: 414px) 
-  and (max-device-width: 736px) 
-  and (-webkit-min-device-pixel-ratio: 3) { 
-    div#goalpost {
-        margin: -1vh auto 0 auto;
+@media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) { 
+        div#goalpost {
+            margin: -1vh auto 0 auto;
+    }
 }
 @media only screen and (max-width: 380px) { 
     html {
@@ -1579,6 +1577,9 @@ span.arabic.text-medium.text-center.text-white.langselecter {
     }
     #goalpost {
     width: 180px;
+}
+.innerpages .header {
+    padding: 5px 8px 10px 8px;
 }
 .goals-col {
     height: 35px;
