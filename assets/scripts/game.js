@@ -18,7 +18,7 @@ const timerElement = document.getElementById("timer");
 
 let goals = 0;
 let gameEnded = false;
-let gameTime = 20;
+let gameTime = 200;
 let ballMoving = false;
 
 
@@ -57,36 +57,37 @@ function kickBall() {
     ballMoving = true;
 
     const startX = football.offsetLeft;
-   // console.log("Start X:", startX);
-    
     const startY = football.offsetTop;
     const goalpostRect = goalpost.getBoundingClientRect();
 
     const randomChance = Math.floor(Math.random() * 5) + 1;
-     console.log("Random Number:", randomChance);
+    console.log("Random Number:", randomChance);
 
-let targetX, targetY;
+    let targetX, targetY;
 
-if (randomChance === 2 || randomChance === 3 || randomChance === 4) {
-    //  Ball enters goal (inside post)
-    targetX = goalpostRect.left + goalpostRect.width / 2; // Center of goalpost
-    targetY = goalpostRect.top + 20;
-} else if (randomChance === 1) {
-    //  Ball misses to the LEFT (away from the post)
-    targetX = goalpostRect.left - 50; // Move ball further left
-    targetY = goalpostRect.top + Math.random() * 50; // Random height
-} else if (randomChance === 5) {
-    //  Ball misses to the RIGHT (away from the post)
-    targetX = goalpostRect.right + 50; // Move ball further right
-    targetY = goalpostRect.top + Math.random() * 50; // Random height
+    if (randomChance === 2 || randomChance === 3 || randomChance === 4) {
+        // Ball enters goal (inside post)
+        targetX = goalpostRect.left + goalpostRect.width / 2; // Center of goalpost
+        targetY = goalpostRect.top + 20;
+    } else if (randomChance === 1) {
+        // Ball misses slightly to the FRONT-LEFT
+        targetX = goalpostRect.left - 50;
+        targetY = goalpostRect.top + 50; // Ensure movement stays forward
+    } else if (randomChance === 5) {
+        // Ball misses slightly to the FRONT-RIGHT
+        targetX = goalpostRect.right + 50;
+        targetY = goalpostRect.top + 50; // Ensure movement stays forward
+    }
+
+    // **Calculate movement direction to maintain a straight line**
+    const deltaX = targetX - startX;
+    const deltaY = targetY - startY;
+
+    // **Increase speed by reducing transition duration**
+    football.style.transition = "transform 1s ease-in-out"; // Smooth movement
+    football.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
 }
 
-football.style.transition = "transform 1s, left 1s, bottom 1s";
-football.style.transform = `translate(${targetX - startX}px, ${targetY - startY}px)`;
-football.style.left = `${targetX}px`;
-football.style.bottom = `${targetY}px`;
-
-}
 
 football.addEventListener("transitionend", () => {
     if (!ballMoving) return;
